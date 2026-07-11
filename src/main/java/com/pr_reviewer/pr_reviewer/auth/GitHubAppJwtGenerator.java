@@ -30,7 +30,7 @@ public class GitHubAppJwtGenerator {
 
         return Jwts.builder()
                 .issuedAt(Date.from(now.minusSeconds(60)))
-                .expiration(Date.from(now.minusSeconds(600))) // 10 mins max
+                .expiration(Date.from(now.plusSeconds(600))) // 10 mins max
                 .issuer(appId)
                 .signWith(privateKey, Jwts.SIG.RS256)
                 .compact();
