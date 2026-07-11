@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-// This controller handles GitHub webhook events, specifically pull request events. It verifies the signature of incoming requests to ensure they are from GitHub and processes the payload accordingly.
 @RestController
 @RequestMapping("/webhook")
 public class GitHubWebhookController {
