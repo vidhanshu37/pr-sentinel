@@ -30,7 +30,7 @@ public class GitHubInstallationTokenService {
     private String fetchAndCacheNewToken(Long installationId) {
         String appJwt = jwtGenerator.generateJwt();
 
-        System.out.println("Generated JWT : " + appJwt);
+        System.out.println(" Generated JWT : " + appJwt);
 
         TokenResponse response = restClient.post()
                 .uri("/app/installations/{id}/access_tokens", installationId)
