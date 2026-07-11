@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+github:
+  webhook:
+    secret: ${GITHUB_WEBHOOK_SECRET:ho89(orI34lA:C,j;p^@x1#FFyO/-HfD:_V*.O9_Y:T}
