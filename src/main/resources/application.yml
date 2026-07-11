@@ -4,7 +4,7 @@ server:
 github:
   app:
     id: 4272698
-    private-key-path: "D:\springboot_learning\pr-sentinel-vid-pkcs8.pem"
+    private-key-path: D:\springboot_learning\pr-sentinel-vid-pkcs8.pem
 
   webhook:
     secret: ${GITHUB_WEBHOOK_SECRET:ho89(orI34lA:C,j;p^@x1#FFyO/-HfD:_V*.O9_Y:T}
