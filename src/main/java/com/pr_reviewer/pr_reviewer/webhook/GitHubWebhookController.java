@@ -1,5 +1,7 @@
 package com.pr_reviewer.pr_reviewer.webhook;
+
 import com.pr_reviewer.pr_reviewer.auth.GitHubInstallationTokenService;
+import com.pr_reviewer.pr_reviewer.github.GitHubDiffFetcher;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,15 +16,17 @@ public class GitHubWebhookController {
     private final String webhookSecret;
     private final ObjectMapper objectMapper;
     private final GitHubInstallationTokenService installationTokenService;
+    private final GitHubDiffFetcher diffFetcher;
 
     public GitHubWebhookController(
             WebhookSignatureVerifier signatureVerifier,
-            @Value("${github.webhook.secret}") String webhookSecret, ObjectMapper objectMapper, GitHubInstallationTokenService gitHubInstallationTokenService) {
+            @Value("${github.webhook.secret}") String webhookSecret, ObjectMapper objectMapper, GitHubInstallationTokenService gitHubInstallationTokenService, GitHubDiffFetcher diffFetcher) {
 
         this.signatureVerifier = signatureVerifier;
         this.webhookSecret = webhookSecret;
         this.objectMapper = objectMapper;
         this.installationTokenService = gitHubInstallationTokenService;
+        this.diffFetcher = diffFetcher;
     }
 
 
@@ -39,8 +43,17 @@ public class GitHubWebhookController {
         if ("pull_request".equals(eventType)) {
             PullRequestWebhookPayload payload = objectMapper.readValue(rawPayLoad, PullRequestWebhookPayload.class);
 
-            if("opened".equals(payload.action()) || "synchronize".equals(payload.action())) {
-                 String token = installationTokenService.getInstallationToken(payload.installation().id());
+            if ("opened".equals(payload.action()) || "synchronize".equals(payload.action())) {
+                String token = installationTokenService.getInstallationToken(payload.installation().id());
+                String diff = diffFetcher.fetchDiff(
+                        payload.repository().owner().login(),
+                        payload.repository().name(),
+                        payload.pullRequest().number(),
+                        token
+                );
+
+                System.out.println("Fetched diff, length : " + diff.length());
+                System.out.println("Diff content" + diff);
 
                 System.out.println("Got installation token for PR #" + payload.pullRequest().number()
                         + " in " + payload.repository().owner().login() + "/" + payload.repository().name()
