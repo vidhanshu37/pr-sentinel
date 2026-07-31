@@ -2,14 +2,27 @@ server:
   port: 8080
 
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prsentinel
+    username: postgres
+    password: postgres
+
   ai:
+    vectorstore:
+      pgvector:
+        index-type: HNSW
+        distance-type: COSINE_DISTANCE
+        dimensions: 768
     google:
       genai:
         api-key: ${GOOGLE_GENAI_API_KEY}
         chat:
           options:
             model: gemini-3.5-flash
-
+        embedding:
+          text:
+            options:
+              model: gemini-embedding-001
 
 github:
   app:
@@ -18,5 +31,3 @@ github:
 
   webhook:
     secret: ${GITHUB_WEBHOOK_SECRET}
-
-
