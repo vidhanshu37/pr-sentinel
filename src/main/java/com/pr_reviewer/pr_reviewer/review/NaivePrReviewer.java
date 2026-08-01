@@ -14,7 +14,7 @@ public class NaivePrReviewer {
     public String review(String rawDiff) {
         return chatClient.prompt()
                 .system("You are a senior software engineer reviewing a pull request." +
-                        " Give specific, actionable feedback on the code changes below.")
+                        " Give specific, actionable feedback on the code changes below...")
                 .user(rawDiff)
                 .call()
                 .content();

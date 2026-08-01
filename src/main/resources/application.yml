@@ -1,3 +1,4 @@
+# this is github project sentinel application.yml file
 server:
   port: 8080
 
