@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 
 ### STS ###
+# this is comment
 .apt_generated
 .classpath
 .factorypath
