@@ -8,6 +8,7 @@ spring:
     username: postgres
     password: postgres
 
+#spring ai dependencies configuration
   ai:
     vectorstore:
       pgvector:
