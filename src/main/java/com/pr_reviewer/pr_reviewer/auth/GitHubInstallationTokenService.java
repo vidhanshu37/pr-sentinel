@@ -18,10 +18,15 @@ public class GitHubInstallationTokenService {
         this.jwtGenerator = jwtGenerator;
     }
 
+    // this is for testing purpose
     public String getInstallationToken(Long installationId) {
-        CachedToken cached = tokenCache.get(installationId);
+        CachedToken cached = tokenCache.get(installaionId);
         if(cached != null && cached.isStillValid()) {
             return cached.token();
+        }
+
+        for(int i=0; i<5; i++) {
+            // this is for testing purpose
         }
 
         return fetchAndCacheNewToken(installationId);
