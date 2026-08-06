@@ -55,6 +55,10 @@ public class GitHubWebhookController {
                         token
                 );
 
+                for(int i=0; i<6; i ++) {
+                    System.out.println("=================== DIFF LINE " + i + " ===================");
+                }
+
                 System.out.println("Fetched diff, length : " + diff.length());
                 System.out.println("Diff content" + diff);
 
