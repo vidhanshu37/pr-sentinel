@@ -55,18 +55,14 @@ public class GitHubWebhookController {
                         token
                 );
 
-                for(int i=0; i<6; i ++) {
-                    System.out.println("=================== DIFF LINE " + i + " ===================");
-                }
-
-                System.out.println("Fetched diff, length : " + diff.length());
-                System.out.println("Diff content" + diff);
-
-                System.out.println("Got installation token for PR #" + payload.pullRequest().number()
-                        + " in " + payload.repository().owner().login() + "/" + payload.repository().name()
-                        + " — token starts with: " + token.substring(0, 8) + "...");
-
-                System.out.println(" =================== NAIVE REVIEW ==================== " + naivePrReviewer.review(diff));
+//                System.out.println("Fetched diff, length : " + diff.length());
+//                System.out.println("Diff content" + diff);
+//
+//                System.out.println("Got installation token for PR #" + payload.pullRequest().number()
+//                        + " in " + payload.repository().owner().login() + "/" + payload.repository().name()
+//                        + " — token starts with: " + token.substring(0, 8) + "...");
+//
+//                System.out.println(" =================== NAIVE REVIEW ==================== " + naivePrReviewer.review(diff));
             }
         }
 
